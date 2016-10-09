@@ -7,4 +7,5 @@ def register(username, password):
         if line[:indexOfPassword] == username:
             return "Username already taken bud"
     data.write(username + "," + hashlib.sha224(password).hexdigest() + '\n')
+    data.close()
     return "Successfully registered"

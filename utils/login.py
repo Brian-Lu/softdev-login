@@ -1,3 +1,4 @@
+from flask import session
 import hashlib
 
 def login(username, password):
@@ -5,6 +6,7 @@ def login(username, password):
     for line in data:
         indexOfPassword = line.find(',')
         if line[:indexOfPassword] == username and line[indexOfPassword + 1:] == hashlib.sha224(password).hexdigest() + '\n':
+            session["username"] = username
             return "You have successfully logged in, " + username
         elif line[:indexOfPassword] == username:
             return "Wrong password??? Try again!!!"
